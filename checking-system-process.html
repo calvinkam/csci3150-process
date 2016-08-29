@@ -5,9 +5,9 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Introduction | CSCI3150 - Process</title>
+        <title>Checking System Process | CSCI3150 - Process</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="After you complete writing a program and would like to execute it, the &quot;running instance&quot; of your program is called Process. ">
+        <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
         
         
@@ -37,8 +37,10 @@
         
     
     
-    <link rel="next" href="./chapter1.html" />
+    <link rel="next" href="./process-identification.html" />
     
+    
+    <link rel="prev" href="./chapter1.html" />
     
 
         
@@ -47,9 +49,9 @@
         
         
     <div class="book"
-        data-level="0"
-        data-chapter-title="Introduction"
-        data-filepath="README.md"
+        data-level="1.1"
+        data-chapter-title="Checking System Process"
+        data-filepath="checking-system-process.md"
         data-basepath="."
         data-revision="Mon Aug 29 2016 17:37:15 GMT+0800 (China Standard Time)"
         data-innerlanguage="">
@@ -67,7 +69,7 @@
 
             
     
-        <li class="chapter active" data-level="0" data-path="index.html">
+        <li class="chapter " data-level="0" data-path="index.html">
             
                 
                     <a href="./index.html">
@@ -96,7 +98,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.1" data-path="checking-system-process.html">
+        <li class="chapter active" data-level="1.1" data-path="checking-system-process.html">
             
                 
                     <a href="./checking-system-process.html">
@@ -164,16 +166,46 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="csci3150--process">CSCI3150 - Process</h1>
-<p>After you complete writing a program and would like to execute it, the &quot;running instance&quot; of your program is called <strong>Process</strong>. </p>
-<p>In this tutorial, you will learn more about the process:</p>
-<ul>
-<li>Process ID</li>
-<li>Create a process</li>
-<li>Exexute a program</li>
-</ul>
-<hr>
-<p>By Calvin Kam (hckam@cse)</p>
+                        <h1 id="checking-system-process">Checking System Process</h1>
+<p>To view a list of process in the system, we can use a handy command <code>top</code> or <code>ps</code></p>
+<h2 id="top">top</h2>
+<p>In the terminal, type</p>
+<pre><code class="lang-bash">$ top
+</code></pre>
+<p>The <code>top</code> program will show the current processes live, just like the Windows task manager :0).</p>
+<p><img src="assets/top.png" alt=""></p>
+<p>Consult man page for more options.</p>
+<h2 id="ps">ps</h2>
+<p>Anther handy tool for checking the processes. In the terminal, we use</p>
+<pre><code>$ ps
+</code></pre><p><img src="assets/ps.png" alt=""></p>
+<p>This will show the current processes created by the user in this terminal. Of course this is not quite useful. We can view all the processes in the system by:</p>
+<pre><code class="lang-bash">$ ps aux
+</code></pre>
+<p><img src="assets/psaux.png" alt=""></p>
+<p>The command is followed by a argument, <code>aux</code></p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a</td>
+<td>Shows processes from all users</td>
+</tr>
+<tr>
+<td>u</td>
+<td>Displays the owner of the process</td>
+</tr>
+<tr>
+<td>x</td>
+<td>Also shows the processes other than the terminal</td>
+</tr>
+</tbody>
+</table>
 
                     
                     </section>
@@ -184,8 +216,10 @@
         </div>
 
         
+        <a href="./chapter1.html" class="navigation navigation-prev " aria-label="Previous page: Knowing about process"><i class="fa fa-angle-left"></i></a>
         
-        <a href="./chapter1.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Knowing about process"><i class="fa fa-angle-right"></i></a>
+        
+        <a href="./process-identification.html" class="navigation navigation-next " aria-label="Next page: Process Identification"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
