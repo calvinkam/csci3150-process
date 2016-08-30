@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Process Identification | CSCI3150 - Process</title>
+        <title>fork\(\) system call | CSCI3150 - Process</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -39,10 +39,8 @@
         
     
     
-    <link rel="next" href="./lets-fork.html" />
     
-    
-    <link rel="prev" href="./checking-system-process.html" />
+    <link rel="prev" href="./background-of.html" />
     
 
         
@@ -51,9 +49,9 @@
         
         
     <div class="book"
-        data-level="1.2"
-        data-chapter-title="Process Identification"
-        data-filepath="process-identification.md"
+        data-level="2.2"
+        data-chapter-title="fork\(\) system call"
+        data-filepath="fork-system-call.md"
         data-basepath="."
         data-revision="Wed Aug 31 2016 02:30:26 GMT+0800 (HKT)"
         data-innerlanguage="">
@@ -115,7 +113,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2" data-path="process-identification.html">
+        <li class="chapter " data-level="1.2" data-path="process-identification.html">
             
                 
                     <a href="./process-identification.html">
@@ -166,7 +164,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2" data-path="fork-system-call.html">
+        <li class="chapter active" data-level="2.2" data-path="fork-system-call.html">
             
                 
                     <a href="./fork-system-call.html">
@@ -219,19 +217,7 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="process-identification">Process Identification</h1>
-<p>In the system, there are lots of processes. We can identify one process uniquely by its <strong>Process ID</strong> or <strong>PID</strong>.</p>
-<p>We have a special system call <code>getpid()</code> to retrieve the PID of the current process.</p>
-<pre><code class="lang-cpp"><span class="hljs-comment">/* getpid.c */</span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
-
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span>
-</span>{
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;My PID is %d\n&quot;</span>,getpid());
-}
-</code></pre>
-<p>You can run multiple time to check the pid changes!</p>
+                        <h1 id="fork-system-call"><code>fork</code> system call</h1>
 
                     
                     </section>
@@ -242,10 +228,8 @@
         </div>
 
         
-        <a href="./checking-system-process.html" class="navigation navigation-prev " aria-label="Previous page: Checking System Process"><i class="fa fa-angle-left"></i></a>
+        <a href="./background-of.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Background of Process Creation"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href="./lets-fork.html" class="navigation navigation-next " aria-label="Next page: Let&#39;s Fork! Process Creation"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
