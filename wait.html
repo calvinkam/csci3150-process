@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Let&#39;s Fork! Process Creation | CSCI3150 - Process</title>
+        <title>Wait! | CSCI3150 - Process</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -51,10 +51,10 @@
         
     
     
-    <link rel="next" href="./background-of.html" />
+    <link rel="next" href="./without-wait.html" />
     
     
-    <link rel="prev" href="./process-identification.html" />
+    <link rel="prev" href="./exec-exercises.html" />
     
 
         
@@ -63,9 +63,9 @@
         
         
     <div class="book"
-        data-level="2"
-        data-chapter-title="Let&#39;s Fork! Process Creation"
-        data-filepath="lets-fork.md"
+        data-level="4"
+        data-chapter-title="Wait!"
+        data-filepath="wait.md"
         data-basepath="."
         data-revision="Mon Sep 19 2016 10:09:35 GMT+0800 (HKT)"
         data-innerlanguage="">
@@ -147,7 +147,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2" data-path="lets-fork.html">
+        <li class="chapter " data-level="2" data-path="lets-fork.html">
             
                 
                     <a href="./lets-fork.html">
@@ -324,7 +324,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4" data-path="wait.html">
+        <li class="chapter active" data-level="4" data-path="wait.html">
             
                 
                     <a href="./wait.html">
@@ -526,12 +526,13 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="lets-fork">Let&apos;s Fork!</h1>
-<p>Here we introduce how to create a process. In this section, you will learn:</p>
-<ul>
-<li>The system call <code>fork</code></li>
-<li>How to distinguish parents and child processes.</li>
-</ul>
+                        <h1 id="wait">Wait!</h1>
+<p>After we learnt about running other program using <code>exec</code>, you may find one problem: the parent died before the child. We would like to suspend the parent and wake it after the child is terminated.</p>
+<p>In this section, you will learn:</p>
+<ol>
+<li><code>wait</code> system call</li>
+<li><code>waitpid</code> system call</li>
+</ol>
 
                     
                     </section>
@@ -542,10 +543,10 @@
         </div>
 
         
-        <a href="./process-identification.html" class="navigation navigation-prev " aria-label="Previous page: Process Identification"><i class="fa fa-angle-left"></i></a>
+        <a href="./exec-exercises.html" class="navigation navigation-prev " aria-label="Previous page: Exec Exercises"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./background-of.html" class="navigation navigation-next " aria-label="Next page: Background of Process Creation"><i class="fa fa-angle-right"></i></a>
+        <a href="./without-wait.html" class="navigation navigation-next " aria-label="Next page: Problem 1: Without Wait?"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

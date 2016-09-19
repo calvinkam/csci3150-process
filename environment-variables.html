@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Let&#39;s Fork! Process Creation | CSCI3150 - Process</title>
+        <title>Environment Variables | CSCI3150 - Process</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -51,10 +51,10 @@
         
     
     
-    <link rel="next" href="./background-of.html" />
+    <link rel="next" href="./exec-family.html" />
     
     
-    <link rel="prev" href="./process-identification.html" />
+    <link rel="prev" href="./first--example.html" />
     
 
         
@@ -63,9 +63,9 @@
         
         
     <div class="book"
-        data-level="2"
-        data-chapter-title="Let&#39;s Fork! Process Creation"
-        data-filepath="lets-fork.md"
+        data-level="3.2"
+        data-chapter-title="Environment Variables"
+        data-filepath="environment-variables.md"
         data-basepath="."
         data-revision="Mon Sep 19 2016 10:09:35 GMT+0800 (HKT)"
         data-innerlanguage="">
@@ -147,7 +147,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2" data-path="lets-fork.html">
+        <li class="chapter " data-level="2" data-path="lets-fork.html">
             
                 
                     <a href="./lets-fork.html">
@@ -259,7 +259,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2" data-path="environment-variables.html">
+        <li class="chapter active" data-level="3.2" data-path="environment-variables.html">
             
                 
                     <a href="./environment-variables.html">
@@ -526,12 +526,21 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="lets-fork">Let&apos;s Fork!</h1>
-<p>Here we introduce how to create a process. In this section, you will learn:</p>
-<ul>
-<li>The system call <code>fork</code></li>
-<li>How to distinguish parents and child processes.</li>
-</ul>
+                        <h1 id="environment-variable">Environment Variable</h1>
+<p>In the shell the environment variables are a set of strings that stores the settings, for example, <code>PATH</code> variable stores the path searching setting and <code>http_proxy</code> sets the proxy server setting.</p>
+<p>There are many ways to get environment variables. One of the ways is from the argument of <code>main</code> function.</p>
+<pre><code class="lang-c"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[], <span class="hljs-keyword">char</span>* envp[])</span>
+</span>{ 
+    <span class="hljs-keyword">int</span> i; 
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; envp[i];i++) 
+    { 
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[%d]: %s\n&quot;</span>,i,envp[i]);
+    } 
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>Take a note of the <code>main</code> function parameter. There is an extra item of <code>char * envp[]</code>. This allows the program to retrieve the system environment variable.</p>
 
                     
                     </section>
@@ -542,10 +551,10 @@
         </div>
 
         
-        <a href="./process-identification.html" class="navigation navigation-prev " aria-label="Previous page: Process Identification"><i class="fa fa-angle-left"></i></a>
+        <a href="./first--example.html" class="navigation navigation-prev " aria-label="Previous page: First exec example"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./background-of.html" class="navigation navigation-next " aria-label="Next page: Background of Process Creation"><i class="fa fa-angle-right"></i></a>
+        <a href="./exec-family.html" class="navigation navigation-next " aria-label="Next page: exec Family"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

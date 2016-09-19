@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Let&#39;s Fork! Process Creation | CSCI3150 - Process</title>
+        <title>Custom signal handler | CSCI3150 - Process</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -51,10 +51,8 @@
         
     
     
-    <link rel="next" href="./background-of.html" />
     
-    
-    <link rel="prev" href="./process-identification.html" />
+    <link rel="prev" href="./kill-system-call.html" />
     
 
         
@@ -63,9 +61,9 @@
         
         
     <div class="book"
-        data-level="2"
-        data-chapter-title="Let&#39;s Fork! Process Creation"
-        data-filepath="lets-fork.md"
+        data-level="5.2"
+        data-chapter-title="Custom signal handler"
+        data-filepath="custom-signal-handler.md"
         data-basepath="."
         data-revision="Mon Sep 19 2016 10:09:35 GMT+0800 (HKT)"
         data-innerlanguage="">
@@ -147,7 +145,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2" data-path="lets-fork.html">
+        <li class="chapter " data-level="2" data-path="lets-fork.html">
             
                 
                     <a href="./lets-fork.html">
@@ -466,7 +464,7 @@
             
         </li>
     
-        <li class="chapter " data-level="5.2" data-path="custom-signal-handler.html">
+        <li class="chapter active" data-level="5.2" data-path="custom-signal-handler.html">
             
                 
                     <a href="./custom-signal-handler.html">
@@ -526,12 +524,41 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="lets-fork">Let&apos;s Fork!</h1>
-<p>Here we introduce how to create a process. In this section, you will learn:</p>
-<ul>
-<li>The system call <code>fork</code></li>
-<li>How to distinguish parents and child processes.</li>
-</ul>
+                        <h1 id="custom-signal-handler">Custom signal handler</h1>
+<p>You can override the default signal handler to IGN (ignore) or a custom handler. This is useful if you would like your program to react for certain kind of signals.</p>
+<p>The program below sets the signal handler of <code>SIGINT</code> to <code>SIG_IGN</code>. The OS will ignore the signal so it has no response to <code>CTRL-C</code>.</p>
+<pre><code class="lang-c"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;signal.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span>
+</span>{
+    signal(SIGINT,SIG_IGN);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Put into while 1 loop..\n&quot;</span>);
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>) { }
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;OK!\n&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<hr>
+<p>To define a custom signal handler, you can create a function and set it with <code>signal()</code>.</p>
+<pre><code class="lang-c"><span class="hljs-keyword">sighandler_t</span> signal(<span class="hljs-keyword">int</span> signum, <span class="hljs-keyword">sighandler_t</span> handler);
+</code></pre>
+<pre><code class="lang-c"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;signal.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">handler</span><span class="hljs-params">(<span class="hljs-keyword">int</span> signal)</span>
+</span>{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Signal %d Received.\n&quot;</span>,signal);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span>
+</span>{
+    signal(SIGINT,handler);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Put into while 1 loop..\n&quot;</span>);
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>) { }
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;OK!\n&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;}
+</code></pre>
 
                     
                     </section>
@@ -542,10 +569,8 @@
         </div>
 
         
-        <a href="./process-identification.html" class="navigation navigation-prev " aria-label="Previous page: Process Identification"><i class="fa fa-angle-left"></i></a>
+        <a href="./kill-system-call.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: kill system call"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href="./background-of.html" class="navigation navigation-next " aria-label="Next page: Background of Process Creation"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Let&#39;s Fork! Process Creation | CSCI3150 - Process</title>
+        <title>exec Family | CSCI3150 - Process</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -51,10 +51,10 @@
         
     
     
-    <link rel="next" href="./background-of.html" />
+    <link rel="next" href="./exec-error-handling.html" />
     
     
-    <link rel="prev" href="./process-identification.html" />
+    <link rel="prev" href="./environment-variables.html" />
     
 
         
@@ -63,9 +63,9 @@
         
         
     <div class="book"
-        data-level="2"
-        data-chapter-title="Let&#39;s Fork! Process Creation"
-        data-filepath="lets-fork.md"
+        data-level="3.3"
+        data-chapter-title="exec Family"
+        data-filepath="exec-family.md"
         data-basepath="."
         data-revision="Mon Sep 19 2016 10:09:35 GMT+0800 (HKT)"
         data-innerlanguage="">
@@ -147,7 +147,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2" data-path="lets-fork.html">
+        <li class="chapter " data-level="2" data-path="lets-fork.html">
             
                 
                     <a href="./lets-fork.html">
@@ -274,7 +274,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.3" data-path="exec-family.html">
+        <li class="chapter active" data-level="3.3" data-path="exec-family.html">
             
                 
                     <a href="./exec-family.html">
@@ -526,12 +526,83 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="lets-fork">Let&apos;s Fork!</h1>
-<p>Here we introduce how to create a process. In this section, you will learn:</p>
-<ul>
-<li>The system call <code>fork</code></li>
-<li>How to distinguish parents and child processes.</li>
-</ul>
+                        <h1 id="exec-family"><code>exec()</code> Family</h1>
+<p>As introduced earlier, <code>exec()</code> has several family members. They are summarized as follows. (By courtesy of Dr. Mole Wong)</p>
+<p><img src="assets/Screen Shot 2016-09-11 at 11.47.30 PM.png" alt=""></p>
+<p>The photo above explains the usage of each member. Different <code>exec()</code> functions accepts different arguments. For explanation, please refer to the figure below.</p>
+<p><img src="assets/Screen Shot 2016-09-12 at 3.19.13 AM.png" alt=""></p>
+<hr>
+<pre><code class="lang-c"><span class="hljs-comment">/* execlp.c */</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span></span>{
+ <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Using *execlp* exec ls -l...\n&quot;</span>);
+ execlp(<span class="hljs-string">&quot;ls&quot;</span>,<span class="hljs-string">&quot;ls&quot;</span>,<span class="hljs-string">&quot;-l&quot;</span>,<span class="hljs-literal">NULL</span>);
+ <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Program Terminated\n&quot;</span>);
+ <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<hr>
+<pre><code class="lang-c"><span class="hljs-comment">/* execle.c */</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span>
+</span>{
+ <span class="hljs-keyword">char</span> *env[] = {<span class="hljs-string">&quot;LS_COLORS=fi=04;33;44&quot;</span>,<span class="hljs-literal">NULL</span>};
+
+ <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Using *execle* to exec ls -l\n&quot;</span>);
+ execle(<span class="hljs-string">&quot;/bin/ls&quot;</span>,<span class="hljs-string">&quot;ls&quot;</span>,<span class="hljs-string">&quot;-l&quot;</span>,<span class="hljs-string">&quot;--color&quot;</span>,<span class="hljs-literal">NULL</span>,env);
+ <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Program Terminated\n&quot;</span>);
+}
+</code></pre>
+<hr>
+<pre><code class="lang-c"><span class="hljs-comment">/* execlv.c */</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span>
+</span>{
+ <span class="hljs-keyword">char</span> *arg[] = {<span class="hljs-string">&quot;ls&quot;</span>,<span class="hljs-string">&quot;-l&quot;</span>,<span class="hljs-literal">NULL</span>};
+ <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Using *execv* to exec ls -l...\n&quot;</span>);
+ execv(<span class="hljs-string">&quot;/bin/ls&quot;</span>,arg);
+ <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Program Terminated\n&quot;</span>);
+ <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<hr>
+<pre><code class="lang-c"><span class="hljs-comment">/* execvp.c */</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span>
+</span>{
+ <span class="hljs-keyword">char</span> *arg[] = {<span class="hljs-string">&quot;ls&quot;</span>,<span class="hljs-string">&quot;-l&quot;</span>,<span class="hljs-literal">NULL</span>};
+ <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Using *execvp* to exec ls -l ...\n&quot;</span>);
+ execvp(<span class="hljs-string">&quot;ls&quot;</span>,arg);
+ <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Program Terminated\n&quot;</span>);
+ <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<hr>
+<pre><code class="lang-c"><span class="hljs-comment">/* execve.c */</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span>
+</span>{
+ <span class="hljs-keyword">char</span> *env[] = {<span class="hljs-string">&quot;LS_COLORS=fi=04;33;44&quot;</span>,<span class="hljs-literal">NULL</span>};
+ <span class="hljs-keyword">char</span> *arg[] = {<span class="hljs-string">&quot;ls&quot;</span>,<span class="hljs-string">&quot;-l&quot;</span>,<span class="hljs-string">&quot;--color&quot;</span>,<span class="hljs-literal">NULL</span>};
+ <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Using *execve* to exec ls -l\n&quot;</span>);
+ execve(<span class="hljs-string">&quot;/bin/ls&quot;</span>,arg,env);
+ <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Program Terminated\n&quot;</span>);
+}
+</code></pre>
 
                     
                     </section>
@@ -542,10 +613,10 @@
         </div>
 
         
-        <a href="./process-identification.html" class="navigation navigation-prev " aria-label="Previous page: Process Identification"><i class="fa fa-angle-left"></i></a>
+        <a href="./environment-variables.html" class="navigation navigation-prev " aria-label="Previous page: Environment Variables"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./background-of.html" class="navigation navigation-next " aria-label="Next page: Background of Process Creation"><i class="fa fa-angle-right"></i></a>
+        <a href="./exec-error-handling.html" class="navigation navigation-next " aria-label="Next page: exec error handling"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

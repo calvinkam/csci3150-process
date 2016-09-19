@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Let&#39;s Fork! Process Creation | CSCI3150 - Process</title>
+        <title>Problem 1: Without Wait? | CSCI3150 - Process</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -51,10 +51,10 @@
         
     
     
-    <link rel="next" href="./background-of.html" />
+    <link rel="next" href="./sleep.html" />
     
     
-    <link rel="prev" href="./process-identification.html" />
+    <link rel="prev" href="./wait.html" />
     
 
         
@@ -63,9 +63,9 @@
         
         
     <div class="book"
-        data-level="2"
-        data-chapter-title="Let&#39;s Fork! Process Creation"
-        data-filepath="lets-fork.md"
+        data-level="4.1"
+        data-chapter-title="Problem 1: Without Wait?"
+        data-filepath="without-wait.md"
         data-basepath="."
         data-revision="Mon Sep 19 2016 10:09:35 GMT+0800 (HKT)"
         data-innerlanguage="">
@@ -147,7 +147,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2" data-path="lets-fork.html">
+        <li class="chapter " data-level="2" data-path="lets-fork.html">
             
                 
                     <a href="./lets-fork.html">
@@ -340,7 +340,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.1" data-path="without-wait.html">
+        <li class="chapter active" data-level="4.1" data-path="without-wait.html">
             
                 
                     <a href="./without-wait.html">
@@ -526,12 +526,34 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="lets-fork">Let&apos;s Fork!</h1>
-<p>Here we introduce how to create a process. In this section, you will learn:</p>
-<ul>
-<li>The system call <code>fork</code></li>
-<li>How to distinguish parents and child processes.</li>
-</ul>
+                        <h1 id="without-wait">Without Wait?</h1>
+<p>Below it is a typical problem to print something in child. </p>
+<pre><code class="lang-c"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span>
+</span>{
+ <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Before fork...\n&quot;</span>);
+ <span class="hljs-keyword">if</span>(fork() == <span class="hljs-number">0</span>)
+ {
+ <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello World!\n&quot;</span>);
+ <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);
+ }
+ <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;After fork..\n&quot;</span>);
+ <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>We expect the output to be:</p>
+<pre><code>Before fork...
+Hello World!
+After fork...
+</code></pre><p>However,  the actual output may become</p>
+<pre><code>Before fork...
+After fork...
+Hello World!
+</code></pre><p>We would like to <strong>suspend</strong> the parent and let the child finish execution.</p>
 
                     
                     </section>
@@ -542,10 +564,10 @@
         </div>
 
         
-        <a href="./process-identification.html" class="navigation navigation-prev " aria-label="Previous page: Process Identification"><i class="fa fa-angle-left"></i></a>
+        <a href="./wait.html" class="navigation navigation-prev " aria-label="Previous page: Wait!"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./background-of.html" class="navigation navigation-next " aria-label="Next page: Background of Process Creation"><i class="fa fa-angle-right"></i></a>
+        <a href="./sleep.html" class="navigation navigation-next " aria-label="Next page: Sleep"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

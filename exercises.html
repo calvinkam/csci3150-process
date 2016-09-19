@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Let&#39;s Fork! Process Creation | CSCI3150 - Process</title>
+        <title>Exercises | CSCI3150 - Process</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -51,10 +51,10 @@
         
     
     
-    <link rel="next" href="./background-of.html" />
+    <link rel="next" href="./process-execution.html" />
     
     
-    <link rel="prev" href="./process-identification.html" />
+    <link rel="prev" href="./distingish-parent-and-child-process.html" />
     
 
         
@@ -63,9 +63,9 @@
         
         
     <div class="book"
-        data-level="2"
-        data-chapter-title="Let&#39;s Fork! Process Creation"
-        data-filepath="lets-fork.md"
+        data-level="2.4"
+        data-chapter-title="Exercises"
+        data-filepath="exercises.md"
         data-basepath="."
         data-revision="Mon Sep 19 2016 10:09:35 GMT+0800 (HKT)"
         data-innerlanguage="">
@@ -147,7 +147,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2" data-path="lets-fork.html">
+        <li class="chapter " data-level="2" data-path="lets-fork.html">
             
                 
                     <a href="./lets-fork.html">
@@ -208,7 +208,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.4" data-path="exercises.html">
+        <li class="chapter active" data-level="2.4" data-path="exercises.html">
             
                 
                     <a href="./exercises.html">
@@ -526,12 +526,103 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="lets-fork">Let&apos;s Fork!</h1>
-<p>Here we introduce how to create a process. In this section, you will learn:</p>
-<ul>
-<li>The system call <code>fork</code></li>
-<li>How to distinguish parents and child processes.</li>
-</ul>
+                        <h1 id="exercises">Exercises</h1>
+<p>Take a note of the program below. It has several <code>fork()</code> and <code>printf()</code>. How many <code>A</code>, <code>B</code> and <code>C</code> will be printed?</p>
+<pre><code class="lang-c"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span></span>{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;A\n&quot;</span>);
+    fork();
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;B\n&quot;</span>);
+    fork();
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;C\n&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<blockquote>
+<p>In progress</p>
+</blockquote>
+<quiz name="Gitbook Quiz">
+
+ <question multiple>
+
+ <p>What is gitbook used for?</p>
+
+ <answer correct="">To read books</answer>
+
+ <answer>To book hotel named git</answer>
+
+ <answer correct="">To write and publish beautiful books</answer>
+
+ <explanation>GitBook.com lets you write, publish and manage your books online as a service.</explanation>
+
+ </question>
+
+ <question>
+
+ <p>Is it quiz?</p>
+
+ <answer correct="">Yes</answer>
+
+ <answer>No</answer>
+
+ </question>
+
+ <question>
+
+ <p>This is multiple dropdown quiz, in each dropdown select a correct number corresponding to the dropdown&apos;s order</p>
+
+ <answer>
+
+ <option correct="">First</option>
+
+ <option>Second</option>
+
+ <option>Third</option>
+
+ <option>Fourth</option>
+
+ </answer>
+
+ <answer>
+
+ <option>First</option>
+
+ <option correct="">Second</option>
+
+ <option>Third</option>
+
+ <option>Fourth</option>
+
+ </answer>
+
+ <answer>
+
+ <option>First</option>
+
+ <option>Second</option>
+
+ <option correct="">Third</option>
+
+ <option>Fourth</option>
+
+ </answer>
+
+ <answer>
+
+ <option>First</option>
+
+ <option>Second</option>
+
+ <option>Third</option>
+
+ <option correct="">Fourth</option>
+
+ </answer>
+
+ </question>
+
+</quiz>
 
                     
                     </section>
@@ -542,10 +633,10 @@
         </div>
 
         
-        <a href="./process-identification.html" class="navigation navigation-prev " aria-label="Previous page: Process Identification"><i class="fa fa-angle-left"></i></a>
+        <a href="./distingish-parent-and-child-process.html" class="navigation navigation-prev " aria-label="Previous page: Distinguish Parent and Child Process"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./background-of.html" class="navigation navigation-next " aria-label="Next page: Background of Process Creation"><i class="fa fa-angle-right"></i></a>
+        <a href="./process-execution.html" class="navigation navigation-next " aria-label="Next page: Process Execution"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
