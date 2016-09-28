@@ -51,7 +51,7 @@
         
     
     
-    <link rel="next" href="./exec-error-handling.html" />
+    <link rel="next" href="./execlp.html" />
     
     
     <link rel="prev" href="./environment-variables.html" />
@@ -67,7 +67,7 @@
         data-chapter-title="exec Family"
         data-filepath="exec-family.md"
         data-basepath="."
-        data-revision="Mon Sep 19 2016 10:09:35 GMT+0800 (HKT)"
+        data-revision="Thu Sep 29 2016 03:09:43 GMT+0800 (HKT)"
         data-innerlanguage="">
     
 
@@ -289,31 +289,91 @@
             
         </li>
     
-        <li class="chapter " data-level="3.4" data-path="exec-error-handling.html">
+        <li class="chapter " data-level="3.4" data-path="execlp.html">
+            
+                
+                    <a href="./execlp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        exec Family: execlp
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="execle.html">
+            
+                
+                    <a href="./execle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        exec Family: execle
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="exec-family-execv.html">
+            
+                
+                    <a href="./exec-family-execv.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        exec Family: execv
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="exec-family-execvp.html">
+            
+                
+                    <a href="./exec-family-execvp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        exec Family: execvp
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="exec-family-execve.html">
+            
+                
+                    <a href="./exec-family-execve.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        exec Family: execve
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="exec-error-handling.html">
             
                 
                     <a href="./exec-error-handling.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.4.</b>
+                            <b>3.9.</b>
                         
                         exec error handling
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.5" data-path="exec-exercises.html">
-            
-                
-                    <a href="./exec-exercises.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.5.</b>
-                        
-                        Exec Exercises
                     </a>
             
             
@@ -481,13 +541,6 @@
             
         </li>
     
-        <li class="chapter " data-level="5.3" >
-            
-            <span><b>5.3.</b> Background Jobs</span>
-            
-            
-        </li>
-    
 
             </ul>
             
@@ -527,82 +580,10 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="exec-family"><code>exec()</code> Family</h1>
-<p>As introduced earlier, <code>exec()</code> has several family members. They are summarized as follows. (By courtesy of Dr. Mole Wong)</p>
+<p>As introduced earlier, <code>exec()</code> has several family members. They are summarized as follows. (By courtesy of Dr. Mole Wong)    </p>
 <p><img src="assets/Screen Shot 2016-09-11 at 11.47.30 PM.png" alt=""></p>
 <p>The photo above explains the usage of each member. Different <code>exec()</code> functions accepts different arguments. For explanation, please refer to the figure below.</p>
 <p><img src="assets/Screen Shot 2016-09-12 at 3.19.13 AM.png" alt=""></p>
-<hr>
-<pre><code class="lang-c"><span class="hljs-comment">/* execlp.c */</span>
-
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
-
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span></span>{
- <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Using *execlp* exec ls -l...\n&quot;</span>);
- execlp(<span class="hljs-string">&quot;ls&quot;</span>,<span class="hljs-string">&quot;ls&quot;</span>,<span class="hljs-string">&quot;-l&quot;</span>,<span class="hljs-literal">NULL</span>);
- <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Program Terminated\n&quot;</span>);
- <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}
-</code></pre>
-<hr>
-<pre><code class="lang-c"><span class="hljs-comment">/* execle.c */</span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
-
-
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span>
-</span>{
- <span class="hljs-keyword">char</span> *env[] = {<span class="hljs-string">&quot;LS_COLORS=fi=04;33;44&quot;</span>,<span class="hljs-literal">NULL</span>};
-
- <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Using *execle* to exec ls -l\n&quot;</span>);
- execle(<span class="hljs-string">&quot;/bin/ls&quot;</span>,<span class="hljs-string">&quot;ls&quot;</span>,<span class="hljs-string">&quot;-l&quot;</span>,<span class="hljs-string">&quot;--color&quot;</span>,<span class="hljs-literal">NULL</span>,env);
- <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Program Terminated\n&quot;</span>);
-}
-</code></pre>
-<hr>
-<pre><code class="lang-c"><span class="hljs-comment">/* execlv.c */</span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
-
-
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span>
-</span>{
- <span class="hljs-keyword">char</span> *arg[] = {<span class="hljs-string">&quot;ls&quot;</span>,<span class="hljs-string">&quot;-l&quot;</span>,<span class="hljs-literal">NULL</span>};
- <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Using *execv* to exec ls -l...\n&quot;</span>);
- execv(<span class="hljs-string">&quot;/bin/ls&quot;</span>,arg);
- <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Program Terminated\n&quot;</span>);
- <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}
-</code></pre>
-<hr>
-<pre><code class="lang-c"><span class="hljs-comment">/* execvp.c */</span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
-
-
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span>
-</span>{
- <span class="hljs-keyword">char</span> *arg[] = {<span class="hljs-string">&quot;ls&quot;</span>,<span class="hljs-string">&quot;-l&quot;</span>,<span class="hljs-literal">NULL</span>};
- <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Using *execvp* to exec ls -l ...\n&quot;</span>);
- execvp(<span class="hljs-string">&quot;ls&quot;</span>,arg);
- <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Program Terminated\n&quot;</span>);
- <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}
-</code></pre>
-<hr>
-<pre><code class="lang-c"><span class="hljs-comment">/* execve.c */</span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
-
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span>
-</span>{
- <span class="hljs-keyword">char</span> *env[] = {<span class="hljs-string">&quot;LS_COLORS=fi=04;33;44&quot;</span>,<span class="hljs-literal">NULL</span>};
- <span class="hljs-keyword">char</span> *arg[] = {<span class="hljs-string">&quot;ls&quot;</span>,<span class="hljs-string">&quot;-l&quot;</span>,<span class="hljs-string">&quot;--color&quot;</span>,<span class="hljs-literal">NULL</span>};
- <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Using *execve* to exec ls -l\n&quot;</span>);
- execve(<span class="hljs-string">&quot;/bin/ls&quot;</span>,arg,env);
- <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Program Terminated\n&quot;</span>);
-}
-</code></pre>
 
                     
                     </section>
@@ -616,7 +597,7 @@
         <a href="./environment-variables.html" class="navigation navigation-prev " aria-label="Previous page: Environment Variables"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./exec-error-handling.html" class="navigation navigation-next " aria-label="Next page: exec error handling"><i class="fa fa-angle-right"></i></a>
+        <a href="./execlp.html" class="navigation navigation-next " aria-label="Next page: exec Family: execlp"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

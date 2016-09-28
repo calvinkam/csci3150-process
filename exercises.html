@@ -67,7 +67,7 @@
         data-chapter-title="Exercises"
         data-filepath="exercises.md"
         data-basepath="."
-        data-revision="Mon Sep 19 2016 10:09:35 GMT+0800 (HKT)"
+        data-revision="Thu Sep 29 2016 03:09:43 GMT+0800 (HKT)"
         data-innerlanguage="">
     
 
@@ -289,31 +289,91 @@
             
         </li>
     
-        <li class="chapter " data-level="3.4" data-path="exec-error-handling.html">
+        <li class="chapter " data-level="3.4" data-path="execlp.html">
+            
+                
+                    <a href="./execlp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        exec Family: execlp
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="execle.html">
+            
+                
+                    <a href="./execle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        exec Family: execle
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="exec-family-execv.html">
+            
+                
+                    <a href="./exec-family-execv.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        exec Family: execv
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="exec-family-execvp.html">
+            
+                
+                    <a href="./exec-family-execvp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        exec Family: execvp
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="exec-family-execve.html">
+            
+                
+                    <a href="./exec-family-execve.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        exec Family: execve
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="exec-error-handling.html">
             
                 
                     <a href="./exec-error-handling.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.4.</b>
+                            <b>3.9.</b>
                         
                         exec error handling
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.5" data-path="exec-exercises.html">
-            
-                
-                    <a href="./exec-exercises.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.5.</b>
-                        
-                        Exec Exercises
                     </a>
             
             
@@ -481,13 +541,6 @@
             
         </li>
     
-        <li class="chapter " data-level="5.3" >
-            
-            <span><b>5.3.</b> Background Jobs</span>
-            
-            
-        </li>
-    
 
             </ul>
             
@@ -528,7 +581,8 @@
                     
                         <h1 id="exercises">Exercises</h1>
 <p>Take a note of the program below. It has several <code>fork()</code> and <code>printf()</code>. How many <code>A</code>, <code>B</code> and <code>C</code> will be printed?</p>
-<pre><code class="lang-c"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<pre><code class="lang-c"><span class="hljs-comment">/* LetsFork/fork_ex.c */</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span></span>{
     <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;A\n&quot;</span>);
@@ -539,20 +593,32 @@
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 </code></pre>
-<blockquote>
-<p>In progress</p>
-</blockquote>
+<quiz name="Fork Quiz">
+    <question>
+           <p>How many `A`, `B` and `C` will be printed?</p>
+
+       <answer>A: 1 time, B: 2 times, C: 2 times</answer>
+        <answer correct="">A: 1 time, B: 2 times, C: 4 times</answer>
+
+       <answer>A: 1 time, B: 1 times, C: 2 times</answer>
+       <answer>A: 1 time, B: 2 times, C: 3 times</answer>
+    </question>
+</quiz>
+
+<!--
+> In progress
+
 <quiz name="Gitbook Quiz">
 
  <question multiple>
 
  <p>What is gitbook used for?</p>
 
- <answer correct="">To read books</answer>
+ <answer correct>To read books</answer>
 
  <answer>To book hotel named git</answer>
 
- <answer correct="">To write and publish beautiful books</answer>
+ <answer correct>To write and publish beautiful books</answer>
 
  <explanation>GitBook.com lets you write, publish and manage your books online as a service.</explanation>
 
@@ -562,7 +628,7 @@
 
  <p>Is it quiz?</p>
 
- <answer correct="">Yes</answer>
+ <answer correct>Yes</answer>
 
  <answer>No</answer>
 
@@ -570,11 +636,11 @@
 
  <question>
 
- <p>This is multiple dropdown quiz, in each dropdown select a correct number corresponding to the dropdown&apos;s order</p>
+ <p>This is multiple dropdown quiz, in each dropdown select a correct number corresponding to the dropdown's order</p>
 
  <answer>
 
- <option correct="">First</option>
+ <option correct>First</option>
 
  <option>Second</option>
 
@@ -588,7 +654,7 @@
 
  <option>First</option>
 
- <option correct="">Second</option>
+ <option correct>Second</option>
 
  <option>Third</option>
 
@@ -602,7 +668,7 @@
 
  <option>Second</option>
 
- <option correct="">Third</option>
+ <option correct>Third</option>
 
  <option>Fourth</option>
 
@@ -616,14 +682,14 @@
 
  <option>Third</option>
 
- <option correct="">Fourth</option>
+ <option correct>Fourth</option>
 
  </answer>
 
  </question>
 
 </quiz>
-
+-->
                     
                     </section>
                 

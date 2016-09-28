@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Signals | CSCI3150 - Process</title>
+        <title>exec Family: execle | CSCI3150 - Process</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -51,10 +51,10 @@
         
     
     
-    <link rel="next" href="./kill-system-call.html" />
+    <link rel="next" href="./exec-family-execv.html" />
     
     
-    <link rel="prev" href="./fork-exec-wait.html" />
+    <link rel="prev" href="./execlp.html" />
     
 
         
@@ -63,9 +63,9 @@
         
         
     <div class="book"
-        data-level="5"
-        data-chapter-title="Signals"
-        data-filepath="signals.md"
+        data-level="3.5"
+        data-chapter-title="exec Family: execle"
+        data-filepath="execle.md"
         data-basepath="."
         data-revision="Thu Sep 29 2016 03:09:43 GMT+0800 (HKT)"
         data-innerlanguage="">
@@ -304,7 +304,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.5" data-path="execle.html">
+        <li class="chapter active" data-level="3.5" data-path="execle.html">
             
                 
                     <a href="./execle.html">
@@ -495,7 +495,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="5" data-path="signals.html">
+        <li class="chapter " data-level="5" data-path="signals.html">
             
                 
                     <a href="./signals.html">
@@ -579,13 +579,25 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="signals">Signals</h1>
-<p>In the lecture, you have learnt the basics of signals. Signals are a kind of interrupt to the running process.</p>
-<p>In this section, you will learn:</p>
-<ol>
-<li>Send singals using <code>kill</code></li>
-<li>Custom signal handling</li>
-</ol>
+                        <h1 id="execle"><code>execle()</code></h1>
+<pre><code class="lang-c"><span class="hljs-comment">/* Exec/execle.c */</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span>
+</span>{ 
+    <span class="hljs-keyword">char</span> *env[] = {<span class="hljs-string">&quot;LS_COLORS=fi=04;33;44&quot;</span>,<span class="hljs-literal">NULL</span>}; 
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Using *execle* to exec ls -l\n&quot;</span>); 
+    execle(<span class="hljs-string">&quot;/bin/ls&quot;</span>,<span class="hljs-string">&quot;ls&quot;</span>,<span class="hljs-string">&quot;-l&quot;</span>,<span class="hljs-string">&quot;--color&quot;</span>,<span class="hljs-literal">NULL</span>,env); 
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Program Terminated\n&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p><code>execlp()</code> uses <em>pathname</em>, <em>argument list</em> and <em>provided ENV</em> to execute the program.</p>
+<pre><code class="lang-c">execle(<span class="hljs-string">&quot;/bin/ls&quot;</span>,<span class="hljs-string">&quot;ls&quot;</span>,<span class="hljs-string">&quot;-l&quot;</span>,<span class="hljs-string">&quot;--color&quot;</span>,<span class="hljs-literal">NULL</span>,env);
+</code></pre>
+<p>You need to provide the exact location (pathname) in order to execute it.</p>
+<p>For the arguments, they are specified directly in the <code>execle()</code> function.</p>
+<p>You can define new environment variables in the function. The environment variables are in a <code>char*</code> array.  In this example, the behaviour of <code>ls</code> can be changed by the variables. In this case, the colors for displaying files and directories are changed.</p>
 
                     
                     </section>
@@ -596,10 +608,10 @@
         </div>
 
         
-        <a href="./fork-exec-wait.html" class="navigation navigation-prev " aria-label="Previous page: Fork Exec Wait"><i class="fa fa-angle-left"></i></a>
+        <a href="./execlp.html" class="navigation navigation-prev " aria-label="Previous page: exec Family: execlp"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./kill-system-call.html" class="navigation navigation-next " aria-label="Next page: kill system call"><i class="fa fa-angle-right"></i></a>
+        <a href="./exec-family-execv.html" class="navigation navigation-next " aria-label="Next page: exec Family: execv"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

@@ -67,7 +67,7 @@
         data-chapter-title="Wait System Call"
         data-filepath="wait-system-call.md"
         data-basepath="."
-        data-revision="Mon Sep 19 2016 10:09:35 GMT+0800 (HKT)"
+        data-revision="Thu Sep 29 2016 03:09:43 GMT+0800 (HKT)"
         data-innerlanguage="">
     
 
@@ -289,31 +289,91 @@
             
         </li>
     
-        <li class="chapter " data-level="3.4" data-path="exec-error-handling.html">
+        <li class="chapter " data-level="3.4" data-path="execlp.html">
+            
+                
+                    <a href="./execlp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        exec Family: execlp
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="execle.html">
+            
+                
+                    <a href="./execle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        exec Family: execle
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="exec-family-execv.html">
+            
+                
+                    <a href="./exec-family-execv.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        exec Family: execv
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="exec-family-execvp.html">
+            
+                
+                    <a href="./exec-family-execvp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        exec Family: execvp
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="exec-family-execve.html">
+            
+                
+                    <a href="./exec-family-execve.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        exec Family: execve
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="exec-error-handling.html">
             
                 
                     <a href="./exec-error-handling.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.4.</b>
+                            <b>3.9.</b>
                         
                         exec error handling
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.5" data-path="exec-exercises.html">
-            
-                
-                    <a href="./exec-exercises.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.5.</b>
-                        
-                        Exec Exercises
                     </a>
             
             
@@ -481,13 +541,6 @@
             
         </li>
     
-        <li class="chapter " data-level="5.3" >
-            
-            <span><b>5.3.</b> Background Jobs</span>
-            
-            
-        </li>
-    
 
             </ul>
             
@@ -530,11 +583,11 @@
 <pre><code class="lang-c"><span class="hljs-keyword">pid_t</span> wait(<span class="hljs-keyword">int</span> *status);
 </code></pre>
 <p>In order to suspend the parent and handle the child properly, the <code>wait</code> system call is neccssary.</p>
-<pre><code class="lang-c"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<pre><code class="lang-c"><span class="hljs-comment">/* Wait/wait.c */</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/types.h&gt;</span></span>
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/wait.h&gt;</span></span>
-
 
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span>
 </span>{
@@ -555,7 +608,7 @@
 }
 </code></pre>
 <p><code>wait()</code> takes one parameter for storing the status of the child process, for example, whether it is terminated or suspended. If you are not interested, just put <code>NULL</code> as the parameter.</p>
-<p>This is the same program in <a href="zombies.html">Problem 2</a>. However, this can get rid of zombies!</p>
+<p>This is a similar program in <a href="zombies.html">Problem 2</a>. However, this can get rid of zombies!</p>
 
                     
                     </section>

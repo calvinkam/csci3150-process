@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Exec Exercises | CSCI3150 - Process</title>
+        <title>exec Family: execve | CSCI3150 - Process</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -51,10 +51,10 @@
         
     
     
-    <link rel="next" href="./wait.html" />
+    <link rel="next" href="./exec-error-handling.html" />
     
     
-    <link rel="prev" href="./exec-error-handling.html" />
+    <link rel="prev" href="./exec-family-execvp.html" />
     
 
         
@@ -63,11 +63,11 @@
         
         
     <div class="book"
-        data-level="3.5"
-        data-chapter-title="Exec Exercises"
-        data-filepath="exec-exercises.md"
+        data-level="3.8"
+        data-chapter-title="exec Family: execve"
+        data-filepath="exec-family-execve.md"
         data-basepath="."
-        data-revision="Mon Sep 19 2016 10:09:35 GMT+0800 (HKT)"
+        data-revision="Thu Sep 29 2016 03:09:43 GMT+0800 (HKT)"
         data-innerlanguage="">
     
 
@@ -289,31 +289,91 @@
             
         </li>
     
-        <li class="chapter " data-level="3.4" data-path="exec-error-handling.html">
+        <li class="chapter " data-level="3.4" data-path="execlp.html">
+            
+                
+                    <a href="./execlp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        exec Family: execlp
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="execle.html">
+            
+                
+                    <a href="./execle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        exec Family: execle
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="exec-family-execv.html">
+            
+                
+                    <a href="./exec-family-execv.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        exec Family: execv
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="exec-family-execvp.html">
+            
+                
+                    <a href="./exec-family-execvp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        exec Family: execvp
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.8" data-path="exec-family-execve.html">
+            
+                
+                    <a href="./exec-family-execve.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        exec Family: execve
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="exec-error-handling.html">
             
                 
                     <a href="./exec-error-handling.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.4.</b>
+                            <b>3.9.</b>
                         
                         exec error handling
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter active" data-level="3.5" data-path="exec-exercises.html">
-            
-                
-                    <a href="./exec-exercises.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.5.</b>
-                        
-                        Exec Exercises
                     </a>
             
             
@@ -481,13 +541,6 @@
             
         </li>
     
-        <li class="chapter " data-level="5.3" >
-            
-            <span><b>5.3.</b> Background Jobs</span>
-            
-            
-        </li>
-    
 
             </ul>
             
@@ -526,7 +579,25 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="exercises">Exercises</h1>
+                        <h1 id="exeve"><code>exeve()</code></h1>
+<pre><code class="lang-c"><span class="hljs-comment">/* Exec/execve.c */</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span></span>{ 
+    <span class="hljs-keyword">char</span> *env[] = {<span class="hljs-string">&quot;LS_COLORS=fi=04;33;44&quot;</span>,<span class="hljs-literal">NULL</span>}; 
+    <span class="hljs-keyword">char</span> *arg[] = {<span class="hljs-string">&quot;ls&quot;</span>,<span class="hljs-string">&quot;-l&quot;</span>,<span class="hljs-string">&quot;--color&quot;</span>,<span class="hljs-literal">NULL</span>}; 
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Using *execve* to exec ls -l\n&quot;</span>);  
+    execve(<span class="hljs-string">&quot;/bin/ls&quot;</span>,arg,env); 
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Program Terminated\n&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p><code>execve()</code> uses <em>filename</em>, <em>argument array</em> and <em>provided ENV</em> to execute the program.</p>
+<pre><code class="lang-c">execve(<span class="hljs-string">&quot;/bin/ls&quot;</span>,arg,env);
+</code></pre>
+<p>It only takes a filename to invoke the program, and it is searched in paths specified in <code>$PATH</code> in sequence.</p>
+<p>The arguments are listed in an array of <code>char*</code> and passed to the function.</p>
+<p>The new sets of environment variables are declared in an array of <code>char*</code> and passed to the program in the function. They can be used to change the behaviour of the new program, for example, <code>ls</code> in this example.</p>
 
                     
                     </section>
@@ -537,10 +608,10 @@
         </div>
 
         
-        <a href="./exec-error-handling.html" class="navigation navigation-prev " aria-label="Previous page: exec error handling"><i class="fa fa-angle-left"></i></a>
+        <a href="./exec-family-execvp.html" class="navigation navigation-prev " aria-label="Previous page: exec Family: execvp"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./wait.html" class="navigation navigation-next " aria-label="Next page: Wait!"><i class="fa fa-angle-right"></i></a>
+        <a href="./exec-error-handling.html" class="navigation navigation-next " aria-label="Next page: exec error handling"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

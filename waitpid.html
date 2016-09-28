@@ -67,7 +67,7 @@
         data-chapter-title="waitpid"
         data-filepath="waitpid.md"
         data-basepath="."
-        data-revision="Mon Sep 19 2016 10:09:35 GMT+0800 (HKT)"
+        data-revision="Thu Sep 29 2016 03:09:43 GMT+0800 (HKT)"
         data-innerlanguage="">
     
 
@@ -289,31 +289,91 @@
             
         </li>
     
-        <li class="chapter " data-level="3.4" data-path="exec-error-handling.html">
+        <li class="chapter " data-level="3.4" data-path="execlp.html">
+            
+                
+                    <a href="./execlp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        exec Family: execlp
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="execle.html">
+            
+                
+                    <a href="./execle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        exec Family: execle
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="exec-family-execv.html">
+            
+                
+                    <a href="./exec-family-execv.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        exec Family: execv
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="exec-family-execvp.html">
+            
+                
+                    <a href="./exec-family-execvp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        exec Family: execvp
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="exec-family-execve.html">
+            
+                
+                    <a href="./exec-family-execve.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        exec Family: execve
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="exec-error-handling.html">
             
                 
                     <a href="./exec-error-handling.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.4.</b>
+                            <b>3.9.</b>
                         
                         exec error handling
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.5" data-path="exec-exercises.html">
-            
-                
-                    <a href="./exec-exercises.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.5.</b>
-                        
-                        Exec Exercises
                     </a>
             
             
@@ -481,13 +541,6 @@
             
         </li>
     
-        <li class="chapter " data-level="5.3" >
-            
-            <span><b>5.3.</b> Background Jobs</span>
-            
-            
-        </li>
-    
 
             </ul>
             
@@ -530,7 +583,37 @@
 <p><code>waitpid()</code> is an advanced version of <code>wait()</code> system call. You can specify more in the parameters.</p>
 <pre><code class="lang-c"><span class="hljs-keyword">pid_t</span> waitpid(<span class="hljs-keyword">pid_t</span> pid, <span class="hljs-keyword">int</span> *status, <span class="hljs-keyword">int</span> options);
 </code></pre>
-<p>TODO: Think of a good example.</p>
+<p>Take a note of the following code to see how does it work:</p>
+<pre><code class="lang-c"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/types.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/wait.h&gt;</span>#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span>
+</span>{
+    <span class="hljs-keyword">int</span> pid;
+    <span class="hljs-keyword">int</span> status;
+    <span class="hljs-keyword">if</span>(!(pid = fork()))
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;My PID: %d\n&quot;</span>,getpid()); 
+        <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>); 
+    }
+    waitpid(pid,&amp;status,WUNTRACED);
+    <span class="hljs-keyword">if</span>(WIFEXITED(status)) 
+    { 
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Exit Normally\n&quot;</span>);
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Exit status: %d\n&quot;</span>,WEXITSTATUS(status)); 
+    } 
+    <span class="hljs-keyword">else</span> 
+    { 
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Exit NOT Normal\n&quot;</span>); 
+    } 
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;}
+</code></pre>
+<p><code>waitpid()</code> takes 3 parameters. The <em>first</em> one is child pid, therefore this is more specific than the previous <code>wait()</code>. </p>
+<p>The second one stores the status of the child. Whenever the child terminates/suspends, it will store the status code in the middle parameter. Note that it accepts a <strong>pointer</strong> only.</p>
+<p>The third is the options for <code>waitpid()</code>. You can change various behaviour, for example, returns immediately if no child has exited: <code>WNOHANG</code>; also returns if the child is stopped (eg: by Ctrl-Z): <code>WUNTRACED</code>.</p>
+<p>There are macros to further tell you more information about the child. You can use <code>WIFEXITED(status)</code> to check if the child is returned normally (i.e. by <code>return</code> or <code>exit()</code>). In addition you even can know the exit code (Only least 8 bits of status code is available to parents) by using <code>WEXITSTATUS(status)</code>.</p>
 
                     
                     </section>

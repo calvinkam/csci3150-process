@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Signals | CSCI3150 - Process</title>
+        <title>exec Family: execvp | CSCI3150 - Process</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -51,10 +51,10 @@
         
     
     
-    <link rel="next" href="./kill-system-call.html" />
+    <link rel="next" href="./exec-family-execve.html" />
     
     
-    <link rel="prev" href="./fork-exec-wait.html" />
+    <link rel="prev" href="./exec-family-execv.html" />
     
 
         
@@ -63,9 +63,9 @@
         
         
     <div class="book"
-        data-level="5"
-        data-chapter-title="Signals"
-        data-filepath="signals.md"
+        data-level="3.7"
+        data-chapter-title="exec Family: execvp"
+        data-filepath="exec-family-execvp.md"
         data-basepath="."
         data-revision="Thu Sep 29 2016 03:09:43 GMT+0800 (HKT)"
         data-innerlanguage="">
@@ -334,7 +334,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.7" data-path="exec-family-execvp.html">
+        <li class="chapter active" data-level="3.7" data-path="exec-family-execvp.html">
             
                 
                     <a href="./exec-family-execvp.html">
@@ -495,7 +495,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="5" data-path="signals.html">
+        <li class="chapter " data-level="5" data-path="signals.html">
             
                 
                     <a href="./signals.html">
@@ -579,13 +579,25 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="signals">Signals</h1>
-<p>In the lecture, you have learnt the basics of signals. Signals are a kind of interrupt to the running process.</p>
-<p>In this section, you will learn:</p>
-<ol>
-<li>Send singals using <code>kill</code></li>
-<li>Custom signal handling</li>
-</ol>
+                        <h1 id="execvp"><code>execvp()</code></h1>
+<pre><code class="lang-c"><span class="hljs-comment">/* Exec/execvp.c */</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span>
+</span>{
+    <span class="hljs-keyword">char</span> *arg[] = {<span class="hljs-string">&quot;ls&quot;</span>,<span class="hljs-string">&quot;-l&quot;</span>,<span class="hljs-literal">NULL</span>};
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Using *execvp* to exec ls -l ...\n&quot;</span>);
+    execvp(<span class="hljs-string">&quot;ls&quot;</span>,arg);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Program Terminated\n&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p><code>execvp()</code> uses <em>filename</em>, <em>argument array</em> and <em>original ENV</em> to execute the program.</p>
+<pre><code class="lang-c">execvp(<span class="hljs-string">&quot;ls&quot;</span>,arg);
+</code></pre>
+<p>It only takes a filename to invoke the program, and it is searched in paths specified in <code>$PATH</code> in sequence.</p>
+<p>The arguments are listed in an array of <code>char*</code> and passed to the function.</p>
+<p>Original environment variable are used in a new program environment.</p>
 
                     
                     </section>
@@ -596,10 +608,10 @@
         </div>
 
         
-        <a href="./fork-exec-wait.html" class="navigation navigation-prev " aria-label="Previous page: Fork Exec Wait"><i class="fa fa-angle-left"></i></a>
+        <a href="./exec-family-execv.html" class="navigation navigation-prev " aria-label="Previous page: exec Family: execv"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./kill-system-call.html" class="navigation navigation-next " aria-label="Next page: kill system call"><i class="fa fa-angle-right"></i></a>
+        <a href="./exec-family-execve.html" class="navigation navigation-next " aria-label="Next page: exec Family: execve"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
