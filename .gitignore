@@ -1,5 +1,5 @@
 #ignore All
-*
+/*
 
 #unignore all with extension
 !*.*

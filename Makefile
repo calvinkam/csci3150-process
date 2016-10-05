@@ -4,6 +4,7 @@ SUBDIRS = GettingStarted \
 	Wait		\
 	Signals		\
 	Misc		\
+	Shell		\
 
 all:
 	for dir in $(SUBDIRS) ; \
