@@ -51,6 +51,8 @@
         
     
     
+    <link rel="next" href="./shell-examples.html" />
+    
     
     <link rel="prev" href="./kill-system-call.html" />
     
@@ -65,7 +67,7 @@
         data-chapter-title="Custom signal handler"
         data-filepath="custom-signal-handler.md"
         data-basepath="."
-        data-revision="Thu Sep 29 2016 04:48:01 GMT+0800 (HKT)"
+        data-revision="Thu Oct 06 2016 05:03:06 GMT+0800 (HKT)"
         data-innerlanguage="">
     
 
@@ -544,6 +546,87 @@
             
         </li>
     
+        <li class="chapter " data-level="6" data-path="shell-examples.html">
+            
+                
+                    <a href="./shell-examples.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Shell Examples
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="get-current-path.html">
+            
+                
+                    <a href="./get-current-path.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Get Current Path
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="change-directory.html">
+            
+                
+                    <a href="./change-directory.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Change Directory
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="change-environment-variables.html">
+            
+                
+                    <a href="./change-environment-variables.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Change Environment Variables
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="argument-array.html">
+            
+                
+                    <a href="./argument-array.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        Argument Array
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
 
             
@@ -580,9 +663,9 @@
                         <h1 id="custom-signal-handler">Custom signal handler</h1>
 <p>You can override the default signal handler to IGN (ignore) or a custom handler. This is useful if you would like your program to react for certain kind of signals.</p>
 <p>The program below sets the signal handler of <code>SIGINT</code> to <code>SIG_IGN</code>. The OS will ignore the signal so it has no response to <code>CTRL-C</code>.</p>
-<pre><code class="lang-c"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<pre><code class="lang-c"><span class="hljs-comment">/* Signals/sigign.c */</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;signal.h&gt;</span></span>
-
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span>
 </span>{
     signal(SIGINT,SIG_IGN);
@@ -596,12 +679,13 @@
 <p>To define a custom signal handler, you can create a function and set it with <code>signal()</code>.</p>
 <pre><code class="lang-c"><span class="hljs-keyword">sighandler_t</span> signal(<span class="hljs-keyword">int</span> signum, <span class="hljs-keyword">sighandler_t</span> handler);
 </code></pre>
-<pre><code class="lang-c"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<pre><code class="lang-c"><span class="hljs-comment">/* Signals/custom.c */</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;signal.h&gt;</span></span>
 
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">handler</span><span class="hljs-params">(<span class="hljs-keyword">int</span> signal)</span>
 </span>{
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Signal %d Received.\n&quot;</span>,signal);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Signal %d Received.Kill me if you can\n&quot;</span>,signal);
 }
 
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span>
@@ -610,7 +694,8 @@
     <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Put into while 1 loop..\n&quot;</span>);
     <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>) { }
     <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;OK!\n&quot;</span>);
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;}
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
 </code></pre>
 
                     
@@ -622,8 +707,10 @@
         </div>
 
         
-        <a href="./kill-system-call.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: kill system call"><i class="fa fa-angle-left"></i></a>
+        <a href="./kill-system-call.html" class="navigation navigation-prev " aria-label="Previous page: kill system call"><i class="fa fa-angle-left"></i></a>
         
+        
+        <a href="./shell-examples.html" class="navigation navigation-next " aria-label="Next page: Shell Examples"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
