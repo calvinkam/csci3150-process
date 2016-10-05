@@ -67,7 +67,7 @@
         data-chapter-title="kill system call"
         data-filepath="kill-system-call.md"
         data-basepath="."
-        data-revision="Thu Oct 06 2016 05:03:06 GMT+0800 (HKT)"
+        data-revision="Thu Oct 06 2016 05:13:27 GMT+0800 (HKT)"
         data-innerlanguage="">
     
 
@@ -668,11 +668,12 @@
 </code></pre>
 <hr>
 <p>The following code demonstrates the use of <code>kill()</code>. Check the manual to see what <code>SIGSEGV</code> is?</p>
-<pre><code class="lang-c"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<pre><code class="lang-c"><span class="hljs-comment">/* Signals/kill.c */</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/types.h&gt;</span></span>
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;signal.h&gt;</span></span>
-
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
 
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span>
 </span>{
